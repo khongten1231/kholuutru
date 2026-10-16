@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chúc Mẹ 20/10</title>
+  <style>
+    :root{--bg1:#ffecd2;--bg2:#fcb69f;--card:#fff;--accent:#ff6b81}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;background:linear-gradient(135deg,var(--bg1),var(--bg2));min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+    .card{width:100%;max-width:720px;background:var(--card);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.12);overflow:hidden;display:grid;grid-template-columns:1fr 320px}
+    .left{padding:36px}
+    h1{margin:0 0 12px;font-size:28px;color:var(--accent)}
+    p{margin:0 0 20px;color:#333;line-height:1.5}
+    .from{margin-top:24px;color:#666;font-size:14px}
+    .btns{display:flex;gap:10px;margin-top:18px}
+    button{background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600}
+    .btn-light{background:transparent;color:var(--accent);border:2px solid var(--accent)}
+    .photo{background:linear-gradient(180deg,rgba(255,107,129,0.08),rgba(0,0,0,0.02));display:flex;align-items:center;justify-content:center;flex-direction:column;padding:18px}
+    .photo img{width:88%;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+    .replace{margin-top:12px;font-size:12px;color:#666}
+    @media (max-width:820px){.card{grid-template-columns:1fr;max-width:520px}.photo{order:-1}}
+    .hearts{position:absolute;right:18px;top:18px;font-size:20px;color:var(--accent)}
+  </style>
+</head>
+<body>
+  <div class="card" role="article" aria-label="Thiệp 20/10 tặng mẹ">
+    <div class="left">
+      <div class="hearts">💖💐</div>
+      <h1>Chúc Mẹ 20/10</h1>
+      <p id="message">Mẹ ơi, 20/10 hạnh phúc nhé! Cảm ơn mẹ vì tất cả — con luôn yêu mẹ và trân trọng từng khoảnh khắc bên mẹ.</p>
+      <div class="from">Thương mẹ, <strong>[Tên bạn]</strong></div>
+
+      <div class="btns">
+        <button onclick="printCard()">In / Lưu PDF</button>
+        <button class="btn-light" onclick="editMessage()">Sửa lời chúc</button>
+      </div>
+    </div>
+
+    <div class="photo">
+      <!-- Thay src bằng ảnh của mẹ nếu muốn -->
+      <img id="photo" src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%23fff1f3'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='20' fill='%23ff6b81'%3EThêm ảnh mẹ ở đây%3C/text%3E%3C/svg%3E" alt="Ảnh mẹ (thay bằng ảnh thực)" />
+      <div class="replace">Nhấn 'Sửa lời chúc' để chỉnh chữ; thay ảnh bằng cách chỉnh thuộc tính src của thẻ img.</div>
+    </div>
+  </div>
+
+  <script>
+    function printCard(){ window.print(); }
+    function editMessage(){
+      const msg = prompt('Chỉnh sửa lời chúc (HTML đơn giản được chấp nhận):', document.getElementById('message').innerHTML);
+      if(msg!==null) document.getElementById('message').innerHTML = msg;
+      const name = prompt('Gõ tên người gửi (hiển thị ở cuối):', '[Tên bạn]');
+      if(name!==null) document.querySelector('.from strong').textContent = name;
+    }
+  </script>
+</body>
+</html>
