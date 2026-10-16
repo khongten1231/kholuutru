@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chúc mừng ngày 20/10 🌸</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle at bottom, #351044, #10051f 70%);
+    font-family: "Segoe UI", sans-serif;
+    color: white;
+}
+
+.scene {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    z-index: 5;
+    font-size: clamp(25px, 5vw, 48px);
+    text-align: center;
+    color: #ffb8df;
+    text-shadow: 0 0 15px #ff3d9a, 0 0 35px #ff69b4;
+    animation: appear 2s ease forwards, glow 2s infinite alternate;
+}
+
+.message {
+    z-index: 5;
+    margin: 18px;
+    max-width: 600px;
+    padding: 0 20px;
+    text-align: center;
+    font-size: clamp(16px, 3vw, 22px);
+    line-height: 1.8;
+    color: #ffe5f3;
+    opacity: 0;
+    animation: appear 2s ease 2s forwards;
+}
+
+.garden {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 230px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+}
+
+.flower {
+    position: relative;
+    width: 100px;
+    height: 210px;
+    transform-origin: bottom center;
+    animation: grow 2s ease-out backwards;
+}
+
+.flower:nth-child(1) { animation-delay: 0.3s; }
+.flower:nth-child(2) { animation-delay: 0.8s; }
+.flower:nth-child(3) { animation-delay: 1.2s; }
+.flower:nth-child(4) { animation-delay: 0.6s; }
+.flower:nth-child(5) { animation-delay: 1.5s; }
+
+.stem {
+    position: absolute;
+    bottom: 0;
+    left: 48px;
+    width: 5px;
+    height: 130px;
+    border-radius: 10px;
+    background: linear-gradient(#7de66e, #176b42);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    animation: stemGrow 1.5s ease-out forwards;
+    animation-delay: inherit;
+}
+
+.leaf {
+    position: absolute;
+    width: 30px;
+    height: 15px;
+    background: #49c878;
+    border-radius: 100% 0 100% 0;
+    bottom: 65px;
+    left: 20px;
+    transform: rotate(-25deg);
+}
+
+.leaf.right {
+    left: 48px;
+    bottom: 90px;
+    transform: rotate(35deg) scaleX(-1);
+}
+
+.bloom {
+    position: absolute;
+    left: 50px;
+    bottom: 120px;
+    width: 0;
+    height: 0;
+    animation: bloom 1.8s cubic-bezier(.2,1.5,.5,1) forwards;
+    animation-delay: calc(var(--delay, 1s) + 1s);
+}
+
+.petal {
+    position: absolute;
+    width: 28px;
+    height: 40px;
+    left: -14px;
+    top: -37px;
+    border-radius: 50% 50% 40% 40%;
+    background: linear-gradient(135deg, #fff0f7, #ff4e9b 65%, #d80065);
+    transform-origin: 50% 100%;
+    box-shadow: 0 0 12px #ff70b8;
+}
+
+.petal:nth-child(1) { transform: rotate(0deg) translateY(-7px); }
+.petal:nth-child(2) { transform: rotate(45deg) translateY(-7px); }
+.petal:nth-child(3) { transform: rotate(90deg) translateY(-7px); }
+.petal:nth-child(4) { transform: rotate(135deg) translateY(-7px); }
+.petal:nth-child(5) { transform: rotate(180deg) translateY(-7px); }
+.petal:nth-child(6) { transform: rotate(225deg) translateY(-7px); }
+.petal:nth-child(7) { transform: rotate(270deg) translateY(-7px); }
+.petal:nth-child(8) { transform: rotate(315deg) translateY(-7px); }
+
+.center {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: -10px;
+    top: -10px;
+    background: radial-gradient(circle, #fff9b0, #ffb52e);
+    border-radius: 50%;
+    box-shadow: 0 0 15px #ffe56d;
+}
+
+.flower:nth-child(2) .petal,
+.flower:nth-child(4) .petal {
+    background: linear-gradient(135deg, #fff3a5, #ffb52e, #ff6688);
+}
+
+.flower:nth-child(3) .petal {
+    background: linear-gradient(135deg, #f8dcff, #bd69ff, #ff65bd);
+}
+
+@keyframes grow {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+@keyframes stemGrow {
+    to { transform: scaleY(1); }
+}
+
+@keyframes bloom {
+    from { transform: scale(0) rotate(-60deg); }
+    to { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #ff3d9a; }
+    to { text-shadow: 0 0 30px #ff3d9a, 0 0 50px #ffb8df; }
+}
+
+.particle {
+    position: absolute;
+    top: -30px;
+    color: #ff9bd2;
+    pointer-events: none;
+    animation: fall linear forwards;
+    z-index: 3;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 0 10px #ffb8df;
+    animation: twinkle 1.5s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.2; transform: scale(.6); }
+    to { opacity: 1; transform: scale(1.5); }
+}
+
+button {
+    position: relative;
+    z-index: 10;
+    margin-top: 18px;
+    padding: 12px 24px;
+    border: 1px solid #ffb8df;
+    border-radius: 30px;
+    color: white;
+    background: #e83e8c55;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #ff4e9b66;
+    transition: .3s;
+}
+
+button:hover {
+    background: #e83e8c;
+    transform: scale(1.08);
+}
+
+@media (max-height: 600px) {
+    .garden { transform: scale(.65); transform-origin: bottom; }
+    .message { margin: 8px; }
+}
+</style>
+</head>
+
+<body>
+<div class="scene" id="scene">
+
+    <h1>🌸 Chúc Mừng Ngày 20/10 🌸</h1>
+
+    <div class="message">
+        Chúc một nửa thế giới luôn xinh đẹp, hạnh phúc
+        và rạng rỡ như những đóa hoa! 💖<br>
+        Mong mọi điều tốt đẹp nhất sẽ đến với bạn.
+        <br>🌷 Happy Vietnamese Women's Day 🌷
+    </div>
+
+    <button onclick="bloomAgain()">💐 Tặng bạn một đóa hoa</button>
+
+    <div class="garden" id="garden"></div>
+</div>
+
+<script>
+const garden = document.getElementById("garden");
+const scene = document.getElementById("scene");
+
+function createFlower(index) {
+    const flower = document.createElement("div");
+    flower.className = "flower";
+    flower.style.setProperty("--delay", `${index * 0.3}s`);
+
+    flower.innerHTML = `
+        <div class="stem">
+            <div class="leaf"></div>
+            <div class="leaf right"></div>
+        </div>
+        <div class="bloom">
+            ${Array.from({length: 8}, () =>
+                '<div class="petal"></div>'
+            ).join("")}
+            <div class="center"></div>
+        </div>
+    `;
+
+    return flower;
+}
+
+function growGarden() {
+    garden.innerHTML = "";
+    for (let i = 0; i < 5; i++) {
+        garden.appendChild(createFlower(i));
+    }
+}
+
+function bloomAgain() {
+    growGarden();
+    for (let i = 0; i < 25; i++) {
+        setTimeout(createPetal, i * 70);
+    }
+}
+
+function createPetal() {
+    const p = document.createElement("div");
+    p.className = "particle";
+    p.textContent = ["🌸", "🌷", "💖", "✨", "🌺"][
+        Math.floor(Math.random() * 5)
+    ];
+    p.style.left = Math.random() * 100 + "vw";
+    p.style.fontSize = (14 + Math.random() * 22) + "px";
+    p.style.animationDuration = (4 + Math.random() * 5) + "s";
+
+    scene.appendChild(p);
+    setTimeout(() => p.remove(), 10000);
+}
+
+function createStars() {
+    for (let i = 0; i < 70; i++) {
+        const star = document.createElement("div");
+        star.className = "star";
+        star.style.left = Math.random() * 100 + "%";
+        star.style.top = Math.random() * 100 + "%";
+        star.style.animationDelay = Math.random() * 2 + "s";
+        scene.appendChild(star);
+    }
+}
+
+growGarden();
+createStars();
+setInterval(createPetal, 300);
+</script>
+</body>
+</html>
