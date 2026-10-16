@@ -163,4 +163,126 @@ box-shadow: 0 0 10px rgba(255, 117, 140, 0.5);
             top: 120px;
             background-size: cover;
             background-position: center;
-            border: 1px solid rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.6);#4a4a4a;
+        }
+        .envelope.open .card {
+            transform: translateY(-160px);
+            z-index: 5;
+        }
+        .card h2 {
+            color: #ff007f;
+            margin-bottom: 12px;
+            font-size: 24px;
+        }
+        .card p {
+            font-size: 15px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+        .heart-icon {
+            font-size: 35px;
+            color: #ff007f;
+            margin-top: 10px;
+            animation: pulse 1s infinite alternate;
+        }
+        @keyframes pulse {
+            to { transform: scale(1.15); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hiệu ứng bầu trời sao -->
+    <div class="stars" id="starContainer"></div>
+
+    <!-- Nút bắt đầu -->
+    <button id="startBtn" onclick="initMagic()">Bấm vào đây xem điều bất ngờ! ✨</button>
+
+    <!-- Không gian ảnh 3D -->
+    <div class="gallery-3d" id="galleryZone">
+        <div class="sphere-container" id="sphere"></div>
+    </div>
+
+    <!-- Hộp thư kết thúc -->
+    <div class="envelope-wrapper" id="envelopeBox">
+        <div class="envelope" id="mainEnvelope" onclick="toggleCard()">
+            <div class="envelope-front"></div>
+            <div class="card">
+                <h2>Gửi Em ! ❤️</h2>
+                <p>Chúc người anh thương một ngày 20/10 ngập tràn niềm vui, nụ cười luôn nở trên môi và luôn là cô gái hạnh phúc nhất thế gian nhé!</p>
+                <div class="heart-icon">💖</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. Tạo hiệu ứng các ngôi sao lấp lánh ngẫu nhiên ---
+        const starContainer = document.getElementById('starContainer');
+        for (let i = 0; i < 120; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            star.style.animationDuration = Math.random() * 2 + 1 + 's';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            starContainer.appendChild(star);
+        }
+
+        // --- Danh sách ảnh mẫu (Thay thế bằng link ảnh thực tế của bạn) ---
+        const myImages = [
+            'https://picsum.photos',
+            'https://picsum.photos',
+            'https://picsum.photos',
+            'https://picsum.photos',
+            'https://picsum.photos',
+            'https://picsum.photos',
+            'https://picsum.photos',
+            'https://picsum.photos'
+        ];
+
+        const sphere = document.getElementById('sphere');
+        const totalPieces = 45; // Số lượng mảnh ghép cấu thành hình cầu ảnh
+
+        // --- 2. Khởi chạy hiệu ứng Gom ảnh thành hình khối ---
+        function initMagic() {document.getElementById('startBtn').style.display = 'none';
+            document.getElementById('galleryZone').style.display = 'flex';
+
+            // Tạo các mảnh ảnh bay hỗn loạn ban đầu ngoài không gian
+            for (let i = 0; i < totalPieces; i++) {
+                const piece = document.createElement('div');
+                piece.classList.add('photo-piece');
+                
+                // Chọn ngẫu nhiên ảnh trong mảng để gán vào các mảnh
+                piece.style.backgroundImage = `url('${myImages[i % myImages.length]}')`;
+                
+                // Vị trí hỗn loạn ban đầu xa tầm mắt
+                const randomX = (Math.random() - 0.5) * 1500;
+                const randomY = (Math.random() - 0.5) * 1500;
+                const randomZ = (Math.random() - 0.5) * 1500;
+                piece.style.transform = `translate3d(${randomX}px, ${randomY}px, ${randomZ}px) rotate(0deg)`;
+                
+                sphere.appendChild(piece);
+
+                // Sau một khoảnh khắc nhỏ, bắt đầu hiệu ứng tự động tụ lại thành hình quả cầu toán học 3D
+                setTimeout(() => {
+                    // Công thức tính tọa độ các điểm trải đều trên mặt cầu (Fibonacci Sphere)
+                    const phi = Math.acos(-1 + (2 * i) / totalPieces);
+                    const theta = Math.sqrt(totalPieces * Math.PI) * phi;
+
+                    const radius = 140; // Bán kính khối cầu ảnh
+                    const x = radius * Math.sin(phi) * Math.cos(theta);
+                    const y = radius * Math.sin(phi) * Math.sin(theta);
+                    const z = radius * Math.cos(phi);
+
+                    // Đưa mảnh ảnh về tọa độ cầu và hướng mặt ảnh ra phía ngoài tâm
+                    piece.style.transform = `translate3d(${x}px, ${y}px, ${z}px) rotateY(${theta * (180 / Math.PI)}deg) rotateX(${90 - phi * (180 / Math.PI)}deg)`;
+                }, 100);
+            }
+
+Hãy thận trọng khi sử dụng mã.
+// --- 3. Sau khi xoay cầu ảnh một lát, tiến hành đổi sang bức thư tình ---
+setTimeout(() => {
+// Tạo hiệu ứng nổ tan biến dần các khối ảnh
+const pieces = document.querySelectorAll('.photo-pi
