@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Women's Day 🌹</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #fbe3e3;
+    font-family: Arial, sans-serif;
+    transition: background 1s;
+}
+
+.scene {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+.flower {
+    font-size: 100px;
+    animation: sway 2s ease-in-out infinite alternate;
+}
+
+@keyframes sway {
+    from { transform: rotate(-8deg); }
+    to { transform: rotate(8deg); }
+}
+
+button {
+    border: none;
+    background: #f05b70;
+    color: white;
+    padding: 13px 25px;
+    border-radius: 25px;
+    font-size: 17px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px #e99aa5;
+    margin-top: 20px;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+
+.card {
+    display: none;
+    position: relative;
+    max-width: 360px;
+    width: 100%;
+    min-height: 300px;
+    margin: auto;
+    padding: 25px 20px;
+    border: 3px solid #ffc1cc;
+    border-radius: 12px;
+    background: #fff0f2;
+    box-shadow: 0 10px 30px #0003;
+    animation: appear 1s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: scale(.5) rotate(-8deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+.card h1 {
+    color: #e94e69;
+    font-size: 25px;
+}
+
+.card p {
+    color: #87404e;
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.balloon {
+    font-size: 55px;
+    animation: float 2s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+    from { transform: translateY(5px); }
+    to { transform: translateY(-12px); }
+}
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    pointer-events: none;
+    animation: fly 5s linear forwards;
+}
+
+@keyframes fly {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+#again {
+    background: #c74360;
+}
+</style>
+</head>
+
+<body>
+<div class="scene">
+
+    <div id="welcome">
+        <div class="flower">🌹</div>
+        <h2 style="color:#d94d66">
+            A little gift for you 💗
+        </h2>
+        <button onclick="openCard()">
+            Click me now! 💌
+        </button>
+    </div>
+
+    <div class="card" id="card">
+        <div class="balloon">🎈💗</div>
+        <h1>Happy Women's Day 🌹</h1>
+
+        <p>
+            Chúc mừng ngày Phụ nữ Việt Nam 20/10! 💐
+        </p>
+
+        <p>
+            Chúc bạn luôn xinh tươi, vui vẻ,
+            hạnh phúc và gặp thật nhiều điều
+            may mắn trong cuộc sống.
+        </p>
+
+        <p>
+            Mong mọi điều tốt đẹp nhất sẽ đến
+            với bạn. Luôn mỉm cười nhé! 💖
+        </p>
+
+        <div style="font-size:35px">
+            💝 🌷 💕
+        </div><button id="again" onclick="location.reload()">
+            Xem lại 💌
+        </button>
+    </div>
+
+</div>
+
+<script>
+function openCard() {
+    document.getElementById("welcome").style.display = "none";
+    document.getElementById("card").style.display = "block";
+    document.body.style.background = "#493e40";
+
+    for (let i = 0; i < 35; i++) {
+        setTimeout(createHeart, i * 100);
+    }
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = ["💗", "💕", "💖", "🌸", "❤️"][
+        Math.floor(Math.random() * 5)
+    ];
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (15 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 7000);
+}
+</script>
+</body>
+</html>
