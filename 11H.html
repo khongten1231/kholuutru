@@ -1,67 +1,4 @@
-animation: shineText 3s linear infinite;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-        @keyframes shineText {
-            to { background-position: 200% center; }
-        }
-
-        .wishes {
-            font-size: 1.15rem;
-            color: #4a4a4a;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            font-style: italic;
-        }
-
-        .flower-icon {
-            font-size: 40px;
-            animation: spin 4s linear infinite;
-            display: inline-block;
-            margin: 10px 0;
-        }
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Hiệu ứng pháo hoa Canvas */
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 5;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Canvas tạo pháo hoa -->
-    <canvas id="fireworksCanvas"></canvas>
-
-    <!-- Hộp quà tương tác -->
-    <div class="gift-container" id="giftSection" onclick="openGift()">
-        <div class="gift-box">🎁</div>
-        <div class="click-text">Chạm vào hộp quà để mở điều bất ngờ! ✨</div>
-    </div>
-
-    <!-- Tấm thiệp lời chúc -->
-    <div class="card-container" id="cardSection">
-        <h1 class="title">Chúc Mừng Ngày 20/10!</h1>
-        <div class="flower-icon">🌸</div>
-        <p class="wishes">
-            Nhân ngày Phụ nữ Việt Nam 20/10, xin gửi tới người phụ nữ tuyệt vời nhất những lời chúc tốt đẹp nhất! <br><br>
-            Chúc các bạn nữ lớp 10H luôn luôn xinh đẹp, rạng rỡ như những đóa hoa hướng dương, ngập tràn niềm vui, hạnh phúc và thành công trong cuộc sống. Cảm ơn vì đã là một phần thế giới tuyệt vời này! 💖
-        </p>
-        <div class="flower-icon" style="animation-delay: -2s;">🌹</div>
-    </div>
-
-    <script>
-        // --- 1. Tạo hiệu ứng tim/bong bóng rơi liên tục ---
-        function createHeart() {
-            const heart = document.createElement('div');html
+html
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -156,4 +93,67 @@ animation: shineText 3s linear infinite;
             background: linear-gradient(45deg, #ff0055, #ff5080, #ff0055);
             background-size: 200% auto;
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-text-fill-color: transparent;animation: shineText 3s linear infinite;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        @keyframes shineText {
+            to { background-position: 200% center; }
+        }
+
+        .wishes {
+            font-size: 1.15rem;
+            color: #4a4a4a;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .flower-icon {
+            font-size: 40px;
+            animation: spin 4s linear infinite;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hiệu ứng pháo hoa Canvas */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Canvas tạo pháo hoa -->
+    <canvas id="fireworksCanvas"></canvas>
+
+    <!-- Hộp quà tương tác -->
+    <div class="gift-container" id="giftSection" onclick="openGift()">
+        <div class="gift-box">🎁</div>
+        <div class="click-text">Chạm vào hộp quà để mở điều bất ngờ! ✨</div>
+    </div>
+
+    <!-- Tấm thiệp lời chúc -->
+    <div class="card-container" id="cardSection">
+        <h1 class="title">Chúc Mừng Ngày 20/10!</h1>
+        <div class="flower-icon">🌸</div>
+        <p class="wishes">
+            Nhân ngày Phụ nữ Việt Nam 20/10, xin gửi tới người phụ nữ tuyệt vời nhất những lời chúc tốt đẹp nhất! <br><br>
+            Chúc bạn/mẹ/chị/em luôn luôn xinh đẹp, rạng rỡ như những đóa hoa hướng dương, ngập tràn niềm vui, hạnh phúc và thành công trong cuộc sống. Cảm ơn vì đã là một phần thế giới tuyệt vời này! 💖
+        </p>
+        <div class="flower-icon" style="animation-delay: -2s;">🌹</div>
+    </div>
+
+    <script>
+        // --- 1. Tạo hiệu ứng tim/bong bóng rơi liên tục ---
+        function createHeart() {
+            const heart = document.createElement('div');
