@@ -1,71 +1,4 @@
-box-shadow: 0 0 10px rgba(255, 117, 140, 0.5);
-            transition: all 2s cubic-bezier(0.25, 1, 0.5, 1);
-            border-radius: 4px;
-        }
-
-        /* Khối lá thư mở ra thiệp chúc mừng */
-        .envelope-wrapper {
-            position: absolute;
-            display: none;
-            opacity: 0;
-            transition: opacity 1.5s ease;
-            z-index: 20;
-        }
-        .envelope {
-            position: relative;
-            width: 450px;
-            height: 280px;
-            background: #ff758c;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            cursor: pointer;
-        }
-        /* Nắp thư */
-        .envelope::before {
-            content: '';
-            position: absolute;
-            top: -160px;
-            left: 0;
-            border-width: 80px 225px;
-            border-style: solid;
-            border-color: transparent transparent #ff758c transparent;
-            transform-origin: bottom;
-            transition: transform 0.5s 0.5s ease;
-            z-index: 4;
-        }
-        /* Mặt trước phong bì đè lên tấm thiệp */
-        .envelope-front {
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-width: 140px 225px;
-            border-style: solid;
-            border-color: transparent #ff8da1 #ff5e7e #ff8da1;
-            border-radius: 0 0 10px 10px;
-            bottom: 0;
-            z-index: 3;
-        }
-        /* Khi mở thư, nắp lật lên */
-        .envelope.open::before {
-            transform: rotateX(180deg) translateY(-160px);
-            z-index: 1;
-        }
-
-        /* Tấm thiệp chúc mừng trượt lên */
-        .card {
-            position: absolute;
-            bottom: 10px;
-            left: 25px;
-            width: 400px;
-            height: 250px;
-            background: #fff;
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.8s ease;
-            z-index: 2;
-            text-align: center;
-            color:<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -163,7 +96,74 @@ box-shadow: 0 0 10px rgba(255, 117, 140, 0.5);
             top: 120px;
             background-size: cover;
             background-position: center;
-            border: 1px solid rgba(255,255,255,0.6);#4a4a4a;
+            border: 1px solid rgba(255,255,255,0.6);box-shadow: 0 0 10px rgba(255, 117, 140, 0.5);
+            transition: all 2s cubic-bezier(0.25, 1, 0.5, 1);
+            border-radius: 4px;
+        }
+
+        /* Khối lá thư mở ra thiệp chúc mừng */
+        .envelope-wrapper {
+            position: absolute;
+            display: none;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            z-index: 20;
+        }
+        .envelope {
+            position: relative;
+            width: 450px;
+            height: 280px;
+            background: #ff758c;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+        /* Nắp thư */
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: -160px;
+            left: 0;
+            border-width: 80px 225px;
+            border-style: solid;
+            border-color: transparent transparent #ff758c transparent;
+            transform-origin: bottom;
+            transition: transform 0.5s 0.5s ease;
+            z-index: 4;
+        }
+        /* Mặt trước phong bì đè lên tấm thiệp */
+        .envelope-front {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-width: 140px 225px;
+            border-style: solid;
+            border-color: transparent #ff8da1 #ff5e7e #ff8da1;
+            border-radius: 0 0 10px 10px;
+            bottom: 0;
+            z-index: 3;
+        }
+        /* Khi mở thư, nắp lật lên */
+        .envelope.open::before {
+            transform: rotateX(180deg) translateY(-160px);
+            z-index: 1;
+        }
+
+        /* Tấm thiệp chúc mừng trượt lên */
+        .card {
+            position: absolute;
+            bottom: 10px;
+            left: 25px;
+            width: 400px;
+            height: 250px;
+            background: #fff;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.8s ease;
+            z-index: 2;
+            text-align: center;
+            color:#4a4a4a;
         }
         .envelope.open .card {
             transform: translateY(-160px);
