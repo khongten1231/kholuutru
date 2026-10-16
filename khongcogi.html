@@ -1,0 +1,166 @@
+box-shadow: 0 0 10px rgba(255, 117, 140, 0.5);
+            transition: all 2s cubic-bezier(0.25, 1, 0.5, 1);
+            border-radius: 4px;
+        }
+
+        /* Khối lá thư mở ra thiệp chúc mừng */
+        .envelope-wrapper {
+            position: absolute;
+            display: none;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            z-index: 20;
+        }
+        .envelope {
+            position: relative;
+            width: 450px;
+            height: 280px;
+            background: #ff758c;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+        /* Nắp thư */
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: -160px;
+            left: 0;
+            border-width: 80px 225px;
+            border-style: solid;
+            border-color: transparent transparent #ff758c transparent;
+            transform-origin: bottom;
+            transition: transform 0.5s 0.5s ease;
+            z-index: 4;
+        }
+        /* Mặt trước phong bì đè lên tấm thiệp */
+        .envelope-front {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-width: 140px 225px;
+            border-style: solid;
+            border-color: transparent #ff8da1 #ff5e7e #ff8da1;
+            border-radius: 0 0 10px 10px;
+            bottom: 0;
+            z-index: 3;
+        }
+        /* Khi mở thư, nắp lật lên */
+        .envelope.open::before {
+            transform: rotateX(180deg) translateY(-160px);
+            z-index: 1;
+        }
+
+        /* Tấm thiệp chúc mừng trượt lên */
+        .card {
+            position: absolute;
+            bottom: 10px;
+            left: 25px;
+            width: 400px;
+            height: 250px;
+            background: #fff;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.8s ease;
+            z-index: 2;
+            text-align: center;
+            color:<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Women's Day - 20/10</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #0b0214;
+            background-image: radial-gradient(circle at center, #2c1654 0%, #0b0214 70%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            perspective: 1000px;
+        }
+
+        /* Hiệu ứng nền sao lấp lánh */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: blink linear infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        /* Nút kích hoạt hiệu ứng */
+        #startBtn {
+            padding: 15px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(45deg, #ff007f, #ff758c);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 0, 127, 0.6);
+            transition: 0.3s;
+            z-index: 10;
+        }
+        #startBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 0, 127, 0.9);
+        }
+
+        /* Không gian hiển thị các mảnh ảnh 3D */
+        .gallery-3d {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+            z-index: 5;
+        }
+
+        /* Khối cầu ảnh xoay tròn */
+        .sphere-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            transform-style: preserve-3d;
+            animation: rotateSphere 20s linear infinite;
+        }
+        @keyframes rotateSphere {
+            from { transform: rotateX(0deg) rotateY(0deg); }
+            to { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        /* Từng mảnh ảnh nhỏ */
+        .photo-piece {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            left: 120px;
+            top: 120px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(255,255,255,0.6);
