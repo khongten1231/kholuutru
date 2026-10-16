@@ -1,0 +1,441 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>11H - Những đóa hoa rực rỡ 🌸</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    color: white;
+    overflow-x: hidden;
+    background: #170923;
+}
+
+.scene {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 45px 15px 160px;
+    background:
+        radial-gradient(ellipse at 50% 100%, #75216c 0%, transparent 60%),
+        radial-gradient(ellipse at 0% 0%, #401a69 0%, transparent 55%),
+        linear-gradient(160deg, #120824, #301039 60%, #13081f);
+}
+
+.stars {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #fff9d8;
+    box-shadow: 0 0 10px #ffc9ed;
+    animation: twinkle 1.5s infinite alternate;
+}
+
+h1 {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    font-size: clamp(28px, 6vw, 58px);
+    color: #ffe0f2;
+    text-shadow: 0 0 12px #ff4db8, 0 0 35px #ff008c;
+    animation: titleIn 2s ease both, shine 2s 2s infinite alternate;
+}
+
+.subtitle {
+    position: relative;
+    z-index: 3;
+    margin: 18px 0;
+    text-align: center;
+    font-size: clamp(16px, 3vw, 22px);
+    color: #ffe6f6;
+    animation: titleIn 2s 0.5s both;
+}
+
+.badge {
+    position: relative;
+    z-index: 3;
+    padding: 10px 24px;
+    border: 1px solid #ffacd9;
+    border-radius: 50px;
+    background: #ff70bd22;
+    color: #ffe5f4;
+    box-shadow: 0 0 25px #ff42ad44;
+    margin-bottom: 22px;
+}
+
+.garden {
+    z-index: 2;
+    width: min(100%, 1000px);
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 12px;
+    align-items: end;
+    margin-top: 25px;
+}
+
+.flower {
+    --color: #ff63a5;
+    position: relative;
+    height: 150px;
+    animation: sway 3s ease-in-out infinite alternate;
+    transform-origin: bottom center;
+}
+
+.flower:nth-child(7n+1) { --color: #ff5e9e; }
+.flower:nth-child(7n+2) { --color: #ffc84b; }
+.flower:nth-child(7n+3) { --color: #bb85ff; }
+.flower:nth-child(7n+4) { --color: #ff7861; }
+.flower:nth-child(7n+5) { --color: #ff8ddd; }
+.flower:nth-child(7n+6) { --color: #7beaff; }
+.flower:nth-child(7n+7) { --color: #ffed79; }
+
+.stem {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 5px;
+    height: 75px;
+    transform: translateX(-50%) scaleY(0);
+    transform-origin: bottom;
+    border-radius: 10px;
+    background: linear-gradient(#9bf78a, #16874f);
+    animation: stemGrow 1.2s ease-out forwards;
+    animation-delay: var(--delay);
+}
+
+.leaf {
+    position: absolute;
+    width: 24px;
+    height: 13px;
+    background: #64df80;
+    border-radius: 100% 0 100% 0;
+    bottom: 30px;
+    left: -21px;
+    transform: rotate(-20deg);
+}
+
+.leaf.right {
+    left: 3px;
+    bottom: 48px;
+    transform: rotate(25deg) scaleX(-1);
+}
+
+.bloom {
+    position: absolute;
+    left: 50%;
+    bottom: 68px;
+    width: 0;
+    height: 0;
+    transform: scale(0);
+    animation: bloom 1.4s cubic-bezier(.2, 1.7, .4, 1) forwards;
+    animation-delay: calc(var(--delay) + .7s);
+}
+
+.petal {
+    position: absolute;
+    left: -15px;
+    top: -35px;
+    width: 30px;
+    height: 39px;
+    border-radius: 50% 50% 43% 43%;
+    background: linear-gradient(
+        135deg,
+        #fff7fb 0%,
+        var(--color) 40%,
+        color-mix(in srgb, var(--color), #8d0758 25%) 100%
+    );
+    transform-origin: 50% 100%;
+    box-shadow: 0 0 12px color-mix(in srgb, var(--color), transparent 25%);
+}
+
+.petal:nth-child(1) { transform: rotate(0deg) translateY(-9px); }
+.petal:nth-child(2) { transform: rotate(45deg) translateY(-9px); }
+.petal:nth-child(3) { transform: rotate(90deg) translateY(-9px); }
+.petal:nth-child(4) { transform: rotate(135deg) translateY(-9px); }
+.petal:nth-child(5) { transform: rotate(180deg) translateY(-9px); }
+.petal:nth-child(6) { transform: rotate(225deg) translateY(-9px); }
+.petal:nth-child(7) { transform: rotate(270deg) translateY(-9px); }
+.petal:nth-child(8) { transform: rotate(315deg) translateY(-9px); }
+
+.center {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fffbc4, #ffb51b);
+    box-shadow: 0 0 15px #fff2a1;
+}
+
+.message {
+    z-index: 3;
+    max-width: 760px;
+    margin-top: 32px;
+    text-align: center;
+    line-height: 1.9;
+    font-size: clamp(16px, 3vw, 21px);
+    color: #ffe9f6;
+    animation: titleIn 2s 1.5s both;
+}
+
+.message strong {
+    color: #ffb7df;
+    text-shadow: 0 0 12px #ff4cae;
+}
+
+button {
+    z-index: 5;
+    margin-top: 25px;
+    border: 1px solid #ffcae7;
+    border-radius: 40px;
+    padding: 14px 25px;
+    background: linear-gradient(120deg, #ff3c9a, #9c42ee);
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 22px #ff4cae66;
+    transition: transform .3s, box-shadow .3s;
+}
+
+button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 35px #ff4cae;
+}
+
+.particle {
+    position: fixed;
+    z-index: 10;
+    top: -40px;
+    pointer-events: none;
+    animation: fall linear forwards;
+    filter: drop-shadow(0 0 7px #ff9dd5);
+}
+
+.burst {
+    position: fixed;
+    z-index: 12;
+    pointer-events: none;
+    animation: burst 1.4s ease-out forwards;
+}
+
+@keyframes stemGrow {
+    to { transform: translateX(-50%) scaleY(1); }
+}
+
+@keyframes bloom {
+    0% { transform: scale(0) rotate(-80deg); }
+    75% { transform: scale(1.2) rotate(8deg); }
+    100% { transform: scale(1) rotate(0); }
+}
+
+@keyframes sway {
+    from { rotate: -4deg; }
+    to { rotate: 4deg; }
+}
+
+@keyframes titleIn {
+    from { opacity: 0; translate: 0 25px; }
+    to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes shine {
+    from { filter: brightness(1); }
+    to { filter: brightness(1.35); }
+}
+
+@keyframes twinkle {
+    from { opacity: .2; transform: scale(.6); }
+    to { opacity: 1; transform: scale(1.6); }
+}
+
+@keyframes fall {
+    0% { transform: translate(0, -5vh) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--drift), 110vh) rotate(720deg); opacity: 0; }
+}
+
+@keyframes burst {
+    0% { transform: translate(0,0) scale(.4); opacity: 1; }
+    100% { transform: translate(var(--x), var(--y)) scale(1.5); opacity: 0; }
+}
+
+@media (max-width: 650px) {
+    .garden {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 2px;
+    }
+    .flower { height: 125px; }
+    .stem { height: 60px; }
+    .bloom { bottom: 55px; }
+    .petal { width: 25px; height: 33px; left: -12px; top: -30px; }
+    .message { margin-top: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="scene" id="scene">
+    <div class="stars" id="stars"></div>
+
+    <div class="badge">💌 MÓN QUÀ NHỎ DÀNH RIÊNG CHO 11H 💌</div>
+
+    <h1>🌸 HAPPY 20/10 🌸</h1>
+
+    <div class="subtitle">
+        Gửi những bông hoa xinh đẹp nhất của lớp 11H 💗
+    </div>
+
+    <div class="garden" id="garden"></div>
+
+    <div class="message">
+        Chúc các cô gái <strong>11H</strong> của chúng ta luôn
+        <strong>xinh đẹp, tự tin và rạng rỡ</strong> như những đóa hoa! 🌷
+        <br>
+        Chúc các bạn luôn vui vẻ, học giỏi, gặp nhiều may mắn,
+        được yêu thương và luôn theo đuổi những ước mơ của mình. ✨
+        <br>
+        <strong>
+            Cảm ơn vì đã làm cho thanh xuân 11H trở nên thật đặc biệt!
+        </strong>
+        <br>
+        💐 Chúc tất cả các bạn nữ có một ngày 20/10 thật hạnh phúc! 💐
+    </div>
+
+    <button onclick="celebrate()">
+        🎁 Bấm vào đây nhận ngàn bông hoa
+    </button>
+</div>
+
+<script>
+const garden = document.getElementById("garden");
+const stars = document.getElementById("stars");
+
+const flowers = 21;
+const emojis = ["🌸", "🌺", "🌷", "💮", "🌼", "💖", "✨", "💕"];
+
+function makeFlower(i) {
+    const f = document.createElement("div");
+    f.className = "flower";
+    f.style.setProperty("--delay", `${(i % 9) * 0.16}s`);
+    f.style.animationDelay = `${(i % 5) * 0.15}s`;
+
+    f.innerHTML = `
+        <div class="stem">
+            <div class="leaf"></div>
+            <div class="leaf right"></div>
+        </div>
+        <div class="bloom">
+            ${Array.from({length: 8}, () =>
+                '<div class="petal"></div>'
+            ).join("")}
+            <div class="center"></div>
+        </div>
+    `;
+    return f;
+}
+
+function createGarden() {
+    garden.innerHTML = "";
+    for (let i = 0; i < flowers; i++) {
+        garden.appendChild(makeFlower(i));
+    }
+}
+
+function createStars() {
+    for (let i = 0; i < 100; i++) {
+        const s = document.createElement("span");
+        s.className = "star";
+        s.style.left = Math.random() * 100 + "%";
+        s.style.top = Math.random() * 100 + "%";
+        s.style.animationDelay = Math.random() * 3 + "s";
+        s.style.animationDuration = (1 + Math.random() * 2) + "s";
+        stars.appendChild(s);
+    }
+}
+
+function fallingPetal() {
+    const p = document.createElement("span");
+    p.className = "particle";
+    p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    p.style.left = Math.random() * 100 + "vw";
+    p.style.fontSize = (16 + Math.random() * 24) + "px";
+    p.style.setProperty("--drift", (Math.random() * 200 - 100) + "px");
+    p.style.animationDuration = (5 + Math.random() * 6) + "s";
+
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 12000);
+}
+
+function firework(x, y) {
+    for (let i = 0; i < 24; i++) {
+        const p = document.createElement("span");
+        p.className = "burst";
+        p.textContent = ["💖", "✨", "🌸", "💗"][
+            Math.floor(Math.random() * 4)
+        ];
+        p.style.left = x + "px";
+        p.style.top = y + "px";
+        p.style.fontSize = (12 + Math.random() * 18) + "px";
+
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 70 + Math.random() * 180;
+        p.style.setProperty("--x", Math.cos(angle) * distance + "px");
+        p.style.setProperty("--y", Math.sin(angle) * distance + "px");
+
+        document.body.appendChild(p);
+        setTimeout(() => p.remove(), 1600);
+    }
+}
+
+function celebrate() {
+    createGarden();
+
+    for (let i = 0; i < 100; i++) {
+        setTimeout(fallingPetal, i * 35);
+    }
+
+    for (let i = 0; i < 8; i++) {
+        setTimeout(() => {
+            firework(
+                window.innerWidth * (0.1 + Math.random() * 0.8),
+                window.innerHeight * (0.15 + Math.random() * 0.55)
+            );
+        }, i * 250);
+    }
+}
+
+createGarden();
+createStars();
+
+setInterval(fallingPetal, 250);
+</script>
+</body>
+</html>
