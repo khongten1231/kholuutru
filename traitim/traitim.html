@@ -1,39 +1,26 @@
-const floatParticles [];
+const floatParticles = [];
+const burstParticles = [];
+const FLOAT_COUNT = 140;
 
- const burstParticles = [];
-
-const FLOAT COUNT 140;
-
- for (Let 10; 1 FLOAT_COUNT; i++) {
-
-const p= new Particle(
-
- Math.random() width, Math.random() height, "float");
-
-
-
-p.life Math.random() p.maxLife; // stagger starting life
-
- floatParticles.push(p);
-
+for (let i = 0; i < FLOAT_COUNT; i++) {
+    const p = new Particle(
+        Math.random() * width,
+        Math.random() * height,
+        "float"
+    );
+    p.life = Math.random() * p.maxLife; // stagger starting life
+    floatParticles.push(p);
 }
 
- function spawnHeartBurst(x, y) {
-
-const count = 140; 11
-
-for (Let 1 ; 1 count; i++) { 12
-
- burstParticles.push(new Particle(x, y, "burst"));
-
+function spawnHeartBurst(x, y) {
+    const count = 140;
+    for (let i = 0; i < count; i++) {
+        burstParticles.push(new Particle(x, y, "burst"));
+    }
 }
 
-}
-
- BLUE SHADES [
-
- "#3b82f6", "#60a5fa", // blue-400
-
- "#93c5fd", "#2563eb", // blue-600
-
- "#bfdbfe", "#1d4ed8", // blue-700
+BLUE_SHADES = [
+    "#3b82f6", "#60a5fa", // blue-400
+    "#93c5fd", "#2563eb", // blue-600
+    "#bfdbfe", "#1d4ed8"  // blue-700
+];
