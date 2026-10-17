@@ -1,0 +1,17 @@
+const x = cx + (Math.random()-0.5)*w*0.25;
+    const y = h*0.67 - Math.random()*h*0.35;
+    ctx.fillStyle = "rgba(0,180,255,0.35)";
+    ctx.beginPath();
+    ctx.arc(x,y,Math.random()*1.5,0,Math.PI*2);
+    ctx.fill();
+  }
+
+  requestAnimationFrame(animate);
+}
+
+window.addEventListener("resize",resize);
+resize();
+animate(0);
+</script>
+</body>
+</html>
